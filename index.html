@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Maker 3000</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <div class="game-container">
+        <div class="controls">
+            <h2>1. Pick Shape</h2>
+            <div class="button-group">
+                <button onclick="setShape('circle')">Circle</button>
+                <button onclick="setShape('square')">Square</button>
+                <button onclick="setShape('sheet')">Sheet Cake</button>
+            </div>
+
+            <h2>2. Pick Flavor</h2>
+            <div class="button-group">
+                <button class="btn-choco" onclick="setFlavor('chocolate')">Chocolate</button>
+                <button class="btn-vanilla" onclick="setFlavor('vanilla')">Vanilla</button>
+                <button class="btn-berry" onclick="setFlavor('strawberry')">Strawberry</button>
+            </div>
+        </div>
+
+        <div class="display-area">
+            <div id="cake-base" class="circle vanilla"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
