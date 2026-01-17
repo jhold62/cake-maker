@@ -3,44 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Cake Shop</title>
+    <title>3D Custom Cake Maker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="game-container">
         <div class="sidebar">
-            <h3>1. Shape</h3>
+            <h3>1. Choose Shape</h3>
             <div class="icon-grid">
-                <button onclick="setShape('film')"><img src="film.avif"><span>Film</span></button>
-                <button onclick="setShape('teardrop')"><div class="shape-preview teardrop-p"></div><span>Tear</span></button>
-                <button onclick="setShape('indy')"><img src="indy.png"><span>Indy</span></button>
-                <button onclick="setShape('bear')"><div class="shape-preview bear-p"></div><span>Bear</span></button>
-                <button onclick="setShape('bunny')"><div class="shape-preview bunny-p"></div><span>Bunny</span></button>
+                <button onclick="setShape('film')"><div class="preview p-film"></div>Film</button>
+                <button onclick="setShape('teardrop')"><div class="preview p-tear"></div>Tear</button>
+                <button onclick="setShape('indy')"><div class="preview p-indy"></div>Indy</button>
+                <button onclick="setShape('bear')"><div class="preview p-bear"></div>Bear</button>
+                <button onclick="setShape('bunny')"><div class="preview p-bunny"></div>Bunny</button>
+                <button onclick="setShape('fish')"><div class="preview p-fish"></div>Fish</button>
             </div>
 
-            <h3>2. Flavor</h3>
+            <h3>2. Choose Flavor</h3>
             <div class="icon-grid">
-                <button onclick="setFlavor('guava')"><div class="color-preview guava"></div><span>Guava</span></button>
-                <button onclick="setFlavor('pear')"><div class="color-preview pear"></div><span>Pear</span></button>
-                <button onclick="setFlavor('avo')"><div class="color-preview avocado"></div><span>Avo</span></button>
-                <button onclick="setFlavor('yucca')"><div class="color-preview yucca"></div><span>Yucca</span></button>
-                <button onclick="setFlavor('sars')"><div class="color-preview sarsaparilla"></div><span>Sars</span></button>
+                <button onclick="setFlavor('guava')"><div class="swatch guava"></div>Guava</button>
+                <button onclick="setFlavor('pear')"><div class="swatch pear"></div>Pear</button>
+                <button onclick="setFlavor('avo')"><div class="swatch avocado"></div>Avo</button>
+                <button onclick="setFlavor('yucca')"><div class="swatch yucca"></div>Yucca</button>
+                <button onclick="setFlavor('sars')"><div class="swatch sarsaparilla"></div>Sars</button>
             </div>
 
-            <h3>3. Toppings</h3>
+            <h3>3. Add Toppings</h3>
             <div class="icon-grid">
                 <button onclick="selectTopping('🐇')"><span>Rabbit</span></button>
                 <button onclick="selectTopping('🟫')"><span>Dirt</span></button>
                 <button onclick="selectTopping('🍞')"><span>Bread</span></button>
                 <button onclick="selectTopping('🥜')"><span>Nuts</span></button>
-                <button onclick="selectTopping('🔘')"><span>Big Sprinkles</span></button>
+                <button onclick="selectTopping('🔘')"><span>Sprinkle</span></button>
             </div>
-            <p id="selected-hint">Select a topping, then click the cake!</p>
+            <p id="status">Select a topping, then click the cake!</p>
+            <button id="clear-btn" onclick="clearToppings()">Reset Toppings</button>
         </div>
 
-        <div class="canvas" id="drop-zone">
-            <div id="cake-wrapper">
+        <div class="canvas">
+            <div id="cake-container">
+                <div id="cake-side"></div>
                 <div id="cake-base" class="teardrop guava" onclick="placeTopping(event)"></div>
             </div>
         </div>
