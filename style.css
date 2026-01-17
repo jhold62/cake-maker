@@ -1,38 +1,138 @@
-body { background: #2c3e50; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-.game-container { display: flex; background: #34495e; padding: 20px; border-radius: 15px; width: 90%; max-width: 900px; height: 80vh; }
+/* --- 1. GENERAL LAYOUT --- */
+body {
+    background: #1a1a1a; /* Dark background to make the cake pop */
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
 
-.sidebar { width: 250px; border-right: 2px solid #2c3e50; padding-right: 20px; overflow-y: auto; }
-.canvas { flex-grow: 1; display: flex; justify-content: center; align-items: center; position: relative; }
+.game-container {
+    display: flex;
+    background: #2d2d2d;
+    padding: 25px;
+    border-radius: 20px;
+    width: 95%;
+    max-width: 1000px;
+    height: 85vh;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid #444;
+}
 
-#cake-base { width: 350px; height: 350px; position: relative; transition: 0.3s; }
+/* --- 2. SIDEBAR CONTROLS --- */
+.sidebar {
+    width: 280px;
+    border-right: 2px solid #444;
+    padding-right: 20px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
 
-/* --- FLAVORS --- */
+h3 {
+    font-size: 1.1rem;
+    color: #ff9eb5;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.scroll-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two buttons per row */
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+/* --- 3. THE CANVAS (CAKE AREA) --- */
+.canvas {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: radial-gradient(circle, #3d3d3d 0%, #2d2d2d 100%);
+}
+
+#cake-base {
+    width: 380px;
+    height: 380px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* --- 4. YOUR CUSTOM FLAVORS --- */
 .guava { background-color: #ff6b6b; }
 .pear { background-color: #d1e231; }
 .avocado { background-color: #568203; }
-.yucca { background-color: #f5f5dc; }
+.yucca { background-color: #f5f5dc; color: #000; }
 .sarsaparilla { background-color: #3c1e08; }
 
-/* --- SHAPES --- */
-/* For the images you uploaded */
+/* --- 5. YOUR CUSTOM SHAPES --- */
+
+/* Image Masks (Uses the photos you uploaded) */
 .film { 
     mask-image: url('film.avif'); 
+    -webkit-mask-image: url('film.avif');
     mask-size: contain; mask-repeat: no-repeat; mask-position: center;
-    -webkit-mask-image: url('film.avif'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
 }
+
 .indy { 
     mask-image: url('indy.png'); 
+    -webkit-mask-image: url('indy.png');
     mask-size: contain; mask-repeat: no-repeat; mask-position: center;
-    -webkit-mask-image: url('indy.png'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
 }
 
-/* For geometric shapes */
+/* Silhouette Paths */
 .teardrop { clip-path: path('M175,0 C175,0 350,150 350,250 A175,175 0 1,1 0,250 C0,150 175,0 175,0 Z'); }
-.bear { clip-path: circle(40% at 50% 50%); } /* Placeholder: You can use an SVG path for a real bear! */
-.mushroom { clip-path: ellipse(50% 40% at 50% 40%); }
 
-/* Toppings */
-.topping-item { position: absolute; font-size: 40px; cursor: move; user-select: none; z-index: 10; }
+.bear { clip-path: path('M175,50 Q225,50 225,100 Q275,100 275,175 Q275,250 225,300 L125,300 Q75,250 75,175 Q75,100 125,100 Q125,50 175,50 Z'); }
 
-.scroll-box { margin-bottom: 20px; }
-button { width: 100%; margin: 2px 0; cursor: pointer; padding: 8px; border: none; border-radius: 4px; }
+.fish { clip-path: path('M50,175 Q150,50 300,175 L350,125 L350,225 L300,175 Q150,300 50,175 Z'); }
+
+.mushroom { clip-path: path('M50,150 A125,100 0 0,1 300,150 L225,150 L225,300 L125,300 L125,150 Z'); }
+
+.bunny { clip-path: path('M125,50 L150,150 L200,150 L225,50 L250,150 Q300,175 300,250 Q300,325 175,325 Q50,325 50,250 Q50,175 100,150 Z'); }
+
+.fractal { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+
+.chewie { clip-path: polygon(30% 0%, 70% 0%, 85% 20%, 80% 40%, 95% 60%, 85% 100%, 15% 100%, 5% 60%, 20% 40%, 15% 20%); }
+
+/* --- 6. TOPPINGS & UI --- */
+.topping-item {
+    position: absolute;
+    font-size: 50px;
+    cursor: grab;
+    user-select: none;
+    z-index: 100;
+}
+
+.topping-item:active { cursor: grabbing; }
+
+button {
+    background: #444;
+    color: white;
+    border: 1px solid #555;
+    padding: 10px 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #ff9eb5;
+    color: #000;
+    transform: translateY(-2px);
+}
+
+/* Special styling for flavor buttons */
+.f-guava { border-left: 5px solid #ff6b6b; }
+.f-pear { border-left: 5px solid #d1e231; }
+.f-avo { border-left: 5px solid #568203; }
+.f-yucca { border-left: 5px solid #f5f5dc; }
+.f-sars { border-left: 5px solid #3c1e08; }
