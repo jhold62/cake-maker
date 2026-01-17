@@ -2,53 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Custom Cake Maker</title>
+    <title>3D Cake Maker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="game-container">
         <div class="sidebar">
-            <h3>1. Choose Shape</h3>
+            <h3>1. Shape</h3>
             <div class="icon-grid">
-                <button onclick="setShape('film')"><div class="preview p-film"></div>Film</button>
-                <button onclick="setShape('teardrop')"><div class="preview p-tear"></div>Tear</button>
-                <button onclick="setShape('indy')"><div class="preview p-indy"></div>Indy</button>
-                <button onclick="setShape('bear')"><div class="preview p-bear"></div>Bear</button>
-                <button onclick="setShape('bunny')"><div class="preview p-bunny"></div>Bunny</button>
-                <button onclick="setShape('fish')"><div class="preview p-fish"></div>Fish</button>
+                <button onclick="setBaseImage('https://cdn.discordapp.com/attachments/1461690406369497244/1462097484552867955/17686604017332.jpg?ex=696cf3e4&is=696ba264&hm=9e4c992036319678a6bc4dfe813ee3f01cc10930cb3646a2c242c65f8ddeb629&')">Indy</button>
+                <button onclick="setBaseImage('https://cdn.discordapp.com/attachments/1461690406369497244/1462097489141432370/17686612679303.png?ex=696cf3e5&is=696ba265&hm=5d28a000cbd41777f17295f6aed3b5d25b251b4e2e35aa4cb89032e1d4128ddc&')">Film</button>
+                <button onclick="setBaseImage('https://cdn.discordapp.com/attachments/1461690406369497244/1462097493209911316/17686602661342.jpg?ex=696cf3e6&is=696ba266&hm=89cc58b57ca3cbb1a166e3988b60ed8df3729174b4a6c5e161d12344941e04ff&')">Bear</button>
+                <button onclick="setBaseImage('https://cdn.discordapp.com/attachments/1461690406369497244/1462097497907527842/17686603009812.jpg?ex=696cf3e7&is=696ba267&hm=7e388b20d799c54d1cc5e24d0904e238aeb9315590ff4b8379f2d127463c1435&')">Fish</button>
+                <button onclick="setBaseImage('https://cdn.discordapp.com/attachments/1461690406369497244/1462097505410875564/17686606149352.jpg?ex=696cf3e9&is=696ba269&hm=903162fb10eca65b685d0f35684f8bb29c4db4b9c1eed7d89bf8048fae0fe8a9&')">Chewie</button>
+                <button onclick="setBaseImage('https://cdn.discordapp.com/attachments/1461690406369497244/1462097516895015013/17686606603002.jpg?ex=696cf3ec&is=696ba26c&hm=59a3be60352085f694c3459d6834aa22922523f60e89f3012421f46e595ea901&')">Mushroom</button>
+                <button onclick="setBaseImage('https://cdn.discordapp.com/attachments/1461690406369497244/1462097528756633683/17686607291792.jpg?ex=696cf3ef&is=696ba26f&hm=3526079dd2c1a0db2d95c327e1ababb1a003d1e422ee03073c0771ef13a885c7&')">Bunny</button>
+                <button onclick="setBaseImage('https://cdn.discordapp.com/attachments/1461690406369497244/1462097723338653706/17686596060002.jpg?ex=696cf41d&is=696ba29d&hm=9fc00b410a2715243f14813ef628ef9a3f98d2b27f6a72e49de679afb2fa0774&')">Tear</button>
             </div>
 
-            <h3>2. Choose Flavor</h3>
+            <h3>2. Flavor</h3>
             <div class="icon-grid">
-                <button onclick="setFlavor('guava')"><div class="swatch guava"></div>Guava</button>
-                <button onclick="setFlavor('pear')"><div class="swatch pear"></div>Pear</button>
-                <button onclick="setFlavor('avo')"><div class="swatch avocado"></div>Avo</button>
-                <button onclick="setFlavor('yucca')"><div class="swatch yucca"></div>Yucca</button>
-                <button onclick="setFlavor('sars')"><div class="swatch sarsaparilla"></div>Sars</button>
+                <button style="background: #FF982E" onclick="setFlavor('#FF982E')">Guava</button>
+                <button style="background: #D1E231" onclick="setFlavor('#D1E231')">Pear</button>
+                <button style="background: #568203; color: white" onclick="setFlavor('#568203')">Avocado</button>
+                <button style="background: #7A7348; color: white" onclick="setFlavor('#7A7348')">Yucca</button>
+                <button style="background: #694930; color: white" onclick="setFlavor('#694930')">Sarsaparilla</button>
             </div>
 
-            <h3>3. Add Toppings</h3>
+            <h3>3. Toppings</h3>
             <div class="icon-grid">
-                <button onclick="selectTopping('🐇')"><span>Rabbit</span></button>
-                <button onclick="selectTopping('🟫')"><span>Dirt</span></button>
-                <button onclick="selectTopping('🍞')"><span>Bread</span></button>
-                <button onclick="selectTopping('🥜')"><span>Nuts</span></button>
-                <button onclick="selectTopping('🔘')"><span>Sprinkle</span></button>
+                <button onclick="selectTopping('🐇')">Rabbit</button>
+                <button onclick="selectTopping('🟫')">Dirt</button>
+                <button onclick="selectTopping('🍞')">Bread</button>
+                <button onclick="selectTopping('🥜')">Nuts</button>
+                <button onclick="selectTopping('🔘')">Sprinkles</button>
             </div>
-            <p id="status">Select a topping, then click the cake!</p>
-            <button id="clear-btn" onclick="clearToppings()">Reset Toppings</button>
+            <button class="reset" onclick="location.reload()">Reset Cake</button>
         </div>
 
         <div class="canvas">
-            <div id="cake-container">
-                <div id="cake-side"></div>
-                <div id="cake-base" class="teardrop guava" onclick="placeTopping(event)"></div>
-            </div>
+            <div id="cake-base" onclick="placeTopping(event)"></div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
