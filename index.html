@@ -3,30 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cake Maker 3000</title>
+    <title>Custom Cake Creator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="game-container">
-        <div class="controls">
-            <h2>1. Pick Shape</h2>
-            <div class="button-group">
-                <button onclick="setShape('circle')">Circle</button>
-                <button onclick="setShape('square')">Square</button>
-                <button onclick="setShape('sheet')">Sheet Cake</button>
+        <div class="sidebar">
+            <h3>1. Shape</h3>
+            <div class="scroll-box">
+                <button onclick="setShape('film')">Old Film</button>
+                <button onclick="setShape('teardrop')">Tear-drop</button>
+                <button onclick="setShape('fractal')">Fractal</button>
+                <button onclick="setShape('bear')">Bear</button>
+                <button onclick="setShape('fish')">Fish</button>
+                <button onclick="setShape('indy')">Indiana Jones</button>
+                <button onclick="setShape('chewie')">Chewbacca</button>
+                <button onclick="setShape('mushroom')">Mushroom</button>
+                <button onclick="setShape('bunny')">Bunny</button>
             </div>
 
-            <h2>2. Pick Flavor</h2>
-            <div class="button-group">
-                <button class="btn-choco" onclick="setFlavor('chocolate')">Chocolate</button>
-                <button class="btn-vanilla" onclick="setFlavor('vanilla')">Vanilla</button>
-                <button class="btn-berry" onclick="setFlavor('strawberry')">Strawberry</button>
+            <h3>2. Flavor</h3>
+            <div class="scroll-box">
+                <button class="f-guava" onclick="setFlavor('guava')">Guava</button>
+                <button class="f-pear" onclick="setFlavor('pear')">Pear</button>
+                <button class="f-avo" onclick="setFlavor('avocado')">Avocado</button>
+                <button class="f-yucca" onclick="setFlavor('yucca')">Yucca</button>
+                <button class="f-sars" onclick="setFlavor('sarsaparilla')">Sarsaparilla</button>
+            </div>
+
+            <h3>3. Toppings</h3>
+            <div class="scroll-box">
+                <button onclick="addTopping('🐇')">Rabbit</button>
+                <button onclick="addTopping('🟫')">Dirt</button>
+                <button onclick="addTopping('🍞')">Bread</button>
+                <button onclick="addTopping('🥜')">Nuts</button>
+                <button onclick="addTopping('🌰')">Dark Nuts</button>
+                <button onclick="addTopping('🔘')">Big Sprinkles</button>
             </div>
         </div>
 
-        <div class="display-area">
-            <div id="cake-base" class="circle vanilla"></div>
+        <div class="canvas">
+            <div id="cake-base" class="teardrop guava"></div>
         </div>
     </div>
 
