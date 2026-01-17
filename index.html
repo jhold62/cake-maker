@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Cake Creator</title>
+    <title>3D Cake Shop</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,40 +11,38 @@
     <div class="game-container">
         <div class="sidebar">
             <h3>1. Shape</h3>
-            <div class="scroll-box">
-                <button onclick="setShape('film')">Old Film</button>
-                <button onclick="setShape('teardrop')">Tear-drop</button>
-                <button onclick="setShape('fractal')">Fractal</button>
-                <button onclick="setShape('bear')">Bear</button>
-                <button onclick="setShape('fish')">Fish</button>
-                <button onclick="setShape('indy')">Indiana Jones</button>
-                <button onclick="setShape('chewie')">Chewbacca</button>
-                <button onclick="setShape('mushroom')">Mushroom</button>
-                <button onclick="setShape('bunny')">Bunny</button>
+            <div class="icon-grid">
+                <button onclick="setShape('film')"><img src="film.avif"><span>Film</span></button>
+                <button onclick="setShape('teardrop')"><div class="shape-preview teardrop-p"></div><span>Tear</span></button>
+                <button onclick="setShape('indy')"><img src="indy.png"><span>Indy</span></button>
+                <button onclick="setShape('bear')"><div class="shape-preview bear-p"></div><span>Bear</span></button>
+                <button onclick="setShape('bunny')"><div class="shape-preview bunny-p"></div><span>Bunny</span></button>
             </div>
 
             <h3>2. Flavor</h3>
-            <div class="scroll-box">
-                <button class="f-guava" onclick="setFlavor('guava')">Guava</button>
-                <button class="f-pear" onclick="setFlavor('pear')">Pear</button>
-                <button class="f-avo" onclick="setFlavor('avocado')">Avocado</button>
-                <button class="f-yucca" onclick="setFlavor('yucca')">Yucca</button>
-                <button class="f-sars" onclick="setFlavor('sarsaparilla')">Sarsaparilla</button>
+            <div class="icon-grid">
+                <button onclick="setFlavor('guava')"><div class="color-preview guava"></div><span>Guava</span></button>
+                <button onclick="setFlavor('pear')"><div class="color-preview pear"></div><span>Pear</span></button>
+                <button onclick="setFlavor('avo')"><div class="color-preview avocado"></div><span>Avo</span></button>
+                <button onclick="setFlavor('yucca')"><div class="color-preview yucca"></div><span>Yucca</span></button>
+                <button onclick="setFlavor('sars')"><div class="color-preview sarsaparilla"></div><span>Sars</span></button>
             </div>
 
             <h3>3. Toppings</h3>
-            <div class="scroll-box">
-                <button onclick="addTopping('🐇')">Rabbit</button>
-                <button onclick="addTopping('🟫')">Dirt</button>
-                <button onclick="addTopping('🍞')">Bread</button>
-                <button onclick="addTopping('🥜')">Nuts</button>
-                <button onclick="addTopping('🌰')">Dark Nuts</button>
-                <button onclick="addTopping('🔘')">Big Sprinkles</button>
+            <div class="icon-grid">
+                <button onclick="selectTopping('🐇')"><span>Rabbit</span></button>
+                <button onclick="selectTopping('🟫')"><span>Dirt</span></button>
+                <button onclick="selectTopping('🍞')"><span>Bread</span></button>
+                <button onclick="selectTopping('🥜')"><span>Nuts</span></button>
+                <button onclick="selectTopping('🔘')"><span>Big Sprinkles</span></button>
             </div>
+            <p id="selected-hint">Select a topping, then click the cake!</p>
         </div>
 
-        <div class="canvas">
-            <div id="cake-base" class="teardrop guava"></div>
+        <div class="canvas" id="drop-zone">
+            <div id="cake-wrapper">
+                <div id="cake-base" class="teardrop guava" onclick="placeTopping(event)"></div>
+            </div>
         </div>
     </div>
 
