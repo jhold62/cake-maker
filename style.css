@@ -1,1 +1,67 @@
+/* 1. General Layout */
+body {
+    background-color: #ffeef2; /* Light pink background */
+    font-family: 'Comic Sans MS', sans-serif; /* Playful font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
+.game-container {
+    display: flex;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    gap: 50px;
+}
+
+/* 2. The Cake Base Styling */
+#cake-base {
+    width: 250px;
+    height: 250px;
+    transition: all 0.5s ease; /* Makes the shape change smooth */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2); /* Gives it 3D depth */
+    margin-top: 50px;
+}
+
+/* --- SHAPES --- */
+.circle {
+    border-radius: 50%;
+}
+.square {
+    border-radius: 10px; /* Slightly rounded corners look nicer */
+}
+.sheet {
+    width: 300px !important; /* Sheet cake is wider */
+    height: 200px !important;
+    border-radius: 5px;
+}
+
+/* --- FLAVORS (Colors) --- */
+.chocolate { background-color: #5d4037; border: 4px solid #3e2723; }
+.vanilla   { background-color: #fcf5c7; border: 4px solid #e6dba8; }
+.strawberry{ background-color: #ff9eb5; border: 4px solid #ff7496; }
+
+/* 3. Button Styling */
+button {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Flavor buttons get their own colors */
+.btn-choco { background: #5d4037; color: white; }
+.btn-vanilla { background: #fcf5c7; }
+.btn-berry { background: #ff9eb5; }
