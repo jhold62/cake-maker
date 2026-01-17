@@ -1,47 +1,55 @@
-body { background: #121212; color: white; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-.game-container { display: flex; background: #1e1e1e; padding: 20px; border-radius: 20px; width: 95%; height: 90vh; border: 1px solid #333; }
+body { background: #1a1a1b; color: #eee; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+.game-container { display: flex; background: #252526; padding: 20px; border-radius: 15px; width: 95vw; height: 90vh; border: 1px solid #444; }
 
-.sidebar { width: 300px; border-right: 2px solid #333; padding-right: 15px; overflow-y: auto; }
+.sidebar { width: 320px; border-right: 1px solid #444; padding-right: 15px; overflow-y: auto; text-align: center; }
 
-/* Icon Grid Styling */
-.icon-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-.icon-grid button { background: #2a2a2a; border: 1px solid #444; border-radius: 10px; padding: 10px; cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: 0.2s; }
-.icon-grid button:hover { background: #3a3a3a; transform: scale(1.05); }
-.icon-grid img { width: 40px; height: 40px; object-fit: contain; margin-bottom: 5px; }
-.icon-grid span { font-size: 10px; color: #ccc; }
+/* 3D CAKE STYLING */
+#cake-container { position: relative; width: 400px; height: 400px; transition: 0.3s; transform: rotateX(20deg); transform-style: preserve-3d; }
 
-/* 3D CAKE EFFECTS */
 #cake-base {
-    width: 400px; height: 400px;
-    position: relative;
-    transition: 0.3s;
-    /* This creates the 3D 'Thick' look */
-    filter: drop-shadow(10px 10px 0px rgba(0,0,0,0.3));
-    box-shadow: inset -15px -15px 30px rgba(0,0,0,0.4), inset 15px 15px 30px rgba(255,255,255,0.1);
+    width: 100%; height: 100%;
+    position: absolute;
+    z-index: 2;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
+    /* Brightened colors for your screen */
+    background-color: #ff6b6b; 
 }
 
-/* FLAVORS (Yucca fixed to off-white cream) */
-.guava { background-color: #ff6b6b; }
-.pear { background-color: #d1e231; }
-.avocado { background-color: #568203; }
-.yucca { background-color: #fdf5e6; border: 1px solid #e0d5b0; }
-.sarsaparilla { background-color: #3c1e08; }
+/* Creates a 'shadow slab' underneath for 3D depth */
+#cake-side {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 15px; /* The thickness of the cake */
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+    transition: 0.3s;
+}
 
-/* SHAPE FIXES (Masking) */
+/* FLAVORS (Brightened to avoid pure black) */
+.guava { background-color: #ff6b6b !important; }
+.pear { background-color: #c9d63c !important; }
+.avocado { background-color: #7ca33c !important; }
+.yucca { background-color: #fdf5e6 !important; }
+.sarsaparilla { background-color: #5d3a24 !important; }
+
+/* SHAPE FIXES (Masking + Clip-Paths) */
+.teardrop { clip-path: path('M200,0 C200,0 400,150 400,250 A200,200 0 1,1 0,250 C0,150 200,0 200,0 Z'); }
+.bear { clip-path: path('M100,100 a50,50 0 1,1 50,-50 a50,50 0 1,1 50,50 v150 a50,50 0 1,1 -100,0 Z'); } /* Simplified Bear */
+.bunny { clip-path: path('M150,50 L170,150 L230,150 L250,50 L280,150 A80,80 0 1,1 120,150 Z'); }
+
+/* IMAGE SHAPES - FIXING THE WHITE BACKGROUND RECTANGLE */
 .indy, .film {
-    background-color: inherit; /* Takes the flavor color */
     -webkit-mask-size: contain;
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
+    mask-mode: luminance; /* This makes the white background transparent! */
+    -webkit-mask-mode: luminance;
 }
-.indy { -webkit-mask-image: url('indy.png'); }
-.film { -webkit-mask-image: url('film.avif'); }
+.indy { -webkit-mask-image: url('550792.png'); }
+.film { -webkit-mask-image: url('550790.avif'); }
 
-/* Geometric Shapes */
-.teardrop { clip-path: path('M200,0 C200,0 400,150 400,250 A200,200 0 1,1 0,250 C0,150 200,0 200,0 Z'); }
-
-/* UI Preview Items */
-.shape-preview { width: 30px; height: 30px; background: #888; margin-bottom: 5px; }
-.teardrop-p { clip-path: circle(50%); } /* simple icon */
-
-.topping-item { position: absolute; font-size: 40px; pointer-events: none; z-index: 100; transform: translate(-50%, -50%); }
+/* UI ELEMENTS */
+.icon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+.icon-grid button { background: #333; border: 1px solid #555; color: white; padding: 10px; cursor: pointer; border-radius: 8px; font-size: 12px; }
+.preview, .swatch { width: 40px; height: 30px; margin: 0 auto 5px; background: #555; }
+.topping-item { position: absolute; font-size: 45px; pointer-events: none; z-index: 10; transform: translate(-50%, -50%); }
