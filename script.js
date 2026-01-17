@@ -1,33 +1,29 @@
-const cake = document.getElementById('cake');
+I'm// 1. Select the cake element
+const cake = document.getElementById('cake-base');
 
-function addTopping(type) {
-    const topping = document.createElement('div');
-    topping.className = 'topping';
-    topping.innerHTML = type; // e.g., '🍓' or '🕯️'
-    topping.style.left = '125px';
-    topping.style.top = '125px';
-    
-    // Make it draggable
-    topping.onmousedown = function(event) {
-        let shiftX = event.clientX - topping.getBoundingClientRect().left;
-        let shiftY = event.clientY - topping.getBoundingClientRect().top;
+// 2. Define the Shapes
+function setShape(shapeName) {
+    // Reset classes but keep the current flavor
+    // This looks at the current class list and saves the flavor
+    let currentFlavor = 'vanilla'; // Default
+    if (cake.classList.contains('chocolate')) currentFlavor = 'chocolate';
+    if (cake.classList.contains('strawberry')) currentFlavor = 'strawberry';
 
-        function moveAt(pageX, pageY) {
-            topping.style.left = pageX - cake.offsetLeft - shiftX + 'px';
-            topping.style.top = pageY - cake.offsetTop - shiftY + 'px';
-        }
+    // Apply new shape + old flavor
+    cake.className = ''; // Wipe all classes
+    cake.classList.add(shapeName);
+    cake.classList.add(currentFlavor);
+}
 
-        function onMouseMove(event) {
-            moveAt(event.pageX, event.pageY);
-        }
+// 3. Define the Flavors
+function setFlavor(flavorName) {
+    // Reset classes but keep the current shape
+    let currentShape = 'circle'; // Default
+    if (cake.classList.contains('square')) currentShape = 'square';
+    if (cake.classList.contains('sheet')) currentShape = 'sheet';
 
-        document.addEventListener('mousemove', onMouseMove);
-
-        topping.onmouseup = function() {
-            document.removeEventListener('mousemove', onMouseMove);
-            topping.onmouseup = null;
-        };
-    };
-
-    cake.appendChild(topping);
+    // Apply new flavor + old shape
+    cake.className = ''; // Wipe all classes
+    cake.classList.add(currentShape);
+    cake.classList.add(flavorName);
 }
