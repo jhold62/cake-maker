@@ -1,55 +1,36 @@
-body { background: #1a1a1b; color: #eee; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-.game-container { display: flex; background: #252526; padding: 20px; border-radius: 15px; width: 95vw; height: 90vh; border: 1px solid #444; }
+body { background: #1a1a1a; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+.game-container { display: flex; background: #2a2a2a; padding: 20px; border-radius: 20px; width: 95vw; height: 90vh; border: 2px solid #333; }
+.sidebar { width: 320px; border-right: 1px solid #444; padding-right: 20px; overflow-y: auto; }
 
-.sidebar { width: 320px; border-right: 1px solid #444; padding-right: 15px; overflow-y: auto; text-align: center; }
+h3 { color: #ff982e; font-size: 1rem; text-transform: uppercase; margin-top: 20px; }
+.icon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
 
-/* 3D CAKE STYLING */
-#cake-container { position: relative; width: 400px; height: 400px; transition: 0.3s; transform: rotateX(20deg); transform-style: preserve-3d; }
+button { background: #333; color: white; border: 1px solid #555; padding: 10px; border-radius: 8px; cursor: pointer; transition: 0.2s; font-weight: bold; }
+button:hover { transform: translateY(-2px); border-color: white; }
+
+/* THE CAKE */
+.canvas { flex-grow: 1; display: flex; justify-content: center; align-items: center; position: relative; perspective: 1000px; }
 
 #cake-base {
-    width: 100%; height: 100%;
+    width: 450px; height: 450px;
+    background-color: #FF982E; /* Default Guava */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: multiply; /* Fixes white background rectangle */
+    
+    /* 3D Depth Effect */
+    filter: drop-shadow(15px 15px 0px rgba(0,0,0,0.4));
+    position: relative;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.topping-item {
     position: absolute;
-    z-index: 2;
-    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
-    /* Brightened colors for your screen */
-    background-color: #ff6b6b; 
+    font-size: 50px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
-/* Creates a 'shadow slab' underneath for 3D depth */
-#cake-side {
-    position: absolute;
-    width: 100%; height: 100%;
-    top: 15px; /* The thickness of the cake */
-    background: rgba(0,0,0,0.4);
-    z-index: 1;
-    transition: 0.3s;
-}
-
-/* FLAVORS (Brightened to avoid pure black) */
-.guava { background-color: #ff6b6b !important; }
-.pear { background-color: #c9d63c !important; }
-.avocado { background-color: #7ca33c !important; }
-.yucca { background-color: #fdf5e6 !important; }
-.sarsaparilla { background-color: #5d3a24 !important; }
-
-/* SHAPE FIXES (Masking + Clip-Paths) */
-.teardrop { clip-path: path('M200,0 C200,0 400,150 400,250 A200,200 0 1,1 0,250 C0,150 200,0 200,0 Z'); }
-.bear { clip-path: path('M100,100 a50,50 0 1,1 50,-50 a50,50 0 1,1 50,50 v150 a50,50 0 1,1 -100,0 Z'); } /* Simplified Bear */
-.bunny { clip-path: path('M150,50 L170,150 L230,150 L250,50 L280,150 A80,80 0 1,1 120,150 Z'); }
-
-/* IMAGE SHAPES - FIXING THE WHITE BACKGROUND RECTANGLE */
-.indy, .film {
-    -webkit-mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-mode: luminance; /* This makes the white background transparent! */
-    -webkit-mask-mode: luminance;
-}
-.indy { -webkit-mask-image: url('550792.png'); }
-.film { -webkit-mask-image: url('550790.avif'); }
-
-/* UI ELEMENTS */
-.icon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
-.icon-grid button { background: #333; border: 1px solid #555; color: white; padding: 10px; cursor: pointer; border-radius: 8px; font-size: 12px; }
-.preview, .swatch { width: 40px; height: 30px; margin: 0 auto 5px; background: #555; }
-.topping-item { position: absolute; font-size: 45px; pointer-events: none; z-index: 10; transform: translate(-50%, -50%); }
+.reset { width: 100%; margin-top: 20px; background: #900; }
