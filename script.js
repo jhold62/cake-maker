@@ -1,29 +1,44 @@
-I'm// 1. Select the cake element
 const cake = document.getElementById('cake-base');
 
-// 2. Define the Shapes
-function setShape(shapeName) {
-    // Reset classes but keep the current flavor
-    // This looks at the current class list and saves the flavor
-    let currentFlavor = 'vanilla'; // Default
-    if (cake.classList.contains('chocolate')) currentFlavor = 'chocolate';
-    if (cake.classList.contains('strawberry')) currentFlavor = 'strawberry';
-
-    // Apply new shape + old flavor
-    cake.className = ''; // Wipe all classes
-    cake.classList.add(shapeName);
-    cake.classList.add(currentFlavor);
+function setShape(shape) {
+    // Keep the color, change the shape
+    const currentFlavor = cake.className.split(' ').find(c => ['guava', 'pear', 'avocado', 'yucca', 'sarsaparilla'].includes(c));
+    cake.className = shape + ' ' + currentFlavor;
 }
 
-// 3. Define the Flavors
-function setFlavor(flavorName) {
-    // Reset classes but keep the current shape
-    let currentShape = 'circle'; // Default
-    if (cake.classList.contains('square')) currentShape = 'square';
-    if (cake.classList.contains('sheet')) currentShape = 'sheet';
+function setFlavor(flavor) {
+    // Keep the shape, change the color
+    const currentShape = cake.className.split(' ')[0];
+    cake.className = currentShape + ' ' + flavor;
+}
 
-    // Apply new flavor + old shape
-    cake.className = ''; // Wipe all classes
-    cake.classList.add(currentShape);
-    cake.classList.add(flavorName);
+function addTopping(emoji) {
+    const topping = document.createElement('div');
+    topping.innerText = emoji;
+    topping.className = 'topping-item';
+    
+    // Set random position initially
+    topping.style.left = (Math.random() * 200 + 50) + 'px';
+    topping.style.top = (Math.random() * 200 + 50) + 'px';
+
+    // Simple Drag and Drop
+    topping.onmousedown = function(event) {
+        let shiftX = event.clientX - topping.getBoundingClientRect().left;
+        let shiftY = event.clientY - topping.getBoundingClientRect().top;
+
+        function moveAt(pageX, pageY) {
+            topping.style.left = pageX - cake.parentElement.offsetLeft - shiftX + 'px';
+            topping.style.top = pageY - cake.parentElement.offsetTop - shiftY + 'px';
+        }
+
+        function onMouseMove(event) { moveAt(event.pageX, event.pageY); }
+        document.addEventListener('mousemove', onMouseMove);
+
+        topping.onmouseup = function() {
+            document.removeEventListener('mousemove', onMouseMove);
+            topping.onmouseup = null;
+        };
+    };
+
+    document.querySelector('.canvas').appendChild(topping);
 }
